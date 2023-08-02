@@ -73,8 +73,25 @@ function queAlimentosTienenXVitamina(vit) {
     let vitAlimento;
     switch (vit) {
         case 'A':
+            /*
             vitAlimento = a.join(", ");
             alert(`${textoAlimentosRicos} A: ${vitAlimento}`);
+            */
+            let contenedor = document.createElement("div");
+            let listaVitAlimento = document.createElement("ul");
+
+            contenedor.appendChild(listaVitAlimento);
+
+            for (const alim of a) {
+                let item = document.createElement("li");
+                item.innerHTML = alim;
+                listaVitAlimento.appendChild(item);
+            }
+            contenedor.innerHTML = `
+                    <h2> ${textoAlimentosRicos} A: </h2>
+                    ${listaVitAlimento.outerHTML}`;
+            document.body.appendChild(contenedor);
+
             break;
         case 'B':
             vitAlimento = b.join(", ");
