@@ -12,7 +12,16 @@ class Alimento {
     }
 
     caloriasCadaCienGramos() {
-        alert(`100grs de ${this.nombre} tienen ${this.calorias} calorías.`);
+        let contenedor = document.createElement("div");
+        contenedor.innerHTML = `
+                <p> 
+                    100 grs de 
+                    <strong> ${this.nombre} </strong> 
+                    tienen: 
+                    <strong> ${this.calorias} </strong> 
+                    calorías.
+                </p>`;
+        document.body.appendChild(contenedor);
     }
 
 }
@@ -37,7 +46,8 @@ let d = ["pescado graso", "hígado", "yema de huevo", "queso", "hongo"];
 
 
 while (!salir) {
-    respuesta = prompt("Seleccione la opción deseada: [A] Buscar el índice calórico de un alimento; [B] Buscar alimentos por vitamina; [C] Calcular las calorías de una receta. [X] Salir").toUpperCase();
+    respuesta = prompt("Seleccione la opción deseada: [A] Buscar el índice calórico de un alimento; [B] Buscar alimentos por vitamina; [C] Calcular las calorías de una receta. [X] Salir")
+    respuesta = respuesta.toUpperCase();
 
     const listaOpciones = ["Selecciona un alimento de la lista: [1] salmón, [2] hígado, [3] huevo, [4]papa, [5] brócoli, [6] tomate, [7] queso, [8] manzana o [9] frutilla", "Selecciona una vitamina: A, B, C, D."];
 
@@ -80,24 +90,6 @@ function queAlimentosTienenXVitamina(vit) {
             break;
     }
 }
-
-
-function caloriasDeXAlimento(alimento) {
-    let contenedor = document.createElement("div");
-    contenedor.innerHTML = `
-        <h2> 
-            100 grs de 
-            <strong> ${listaAlimentos[alimento - 1].nombre} </strong> 
-            tienen: 
-            <strong> ${listaAlimentos[alimento - 1].calorias} </strong> 
-            calorías.
-        </h2>`
-    document.body.appendChild(contenedor);
-}
-/*
-alert("100gr de " + listaAlimentos[alimento - 1].nombre + " tienen " + listaAlimentos[alimento - 1].calorias + "calorías.");
-}
-*/
 
 function caloriasPorReceta() {
     let seguir = true;
