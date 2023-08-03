@@ -12,6 +12,8 @@ class Alimento {
     }
 
     caloriasCadaCienGramos() {
+        alert(`100grs de ${this.nombre} tienen ${this.calorias} calorías.`);
+
         let contenedor = document.createElement("div");
         contenedor.innerHTML = `
                 <p> 
@@ -73,10 +75,10 @@ function queAlimentosTienenXVitamina(vit) {
     let vitAlimento;
     switch (vit) {
         case 'A':
-            /*
+
             vitAlimento = a.join(", ");
             alert(`${textoAlimentosRicos} A: ${vitAlimento}`);
-            */
+
             let contenedor = document.createElement("div");
             let listaVitAlimento = document.createElement("ul");
 
@@ -94,6 +96,9 @@ function queAlimentosTienenXVitamina(vit) {
 
             break;
         case 'B':
+            vitAlimento = b.join(", ");
+            alert(`${textoAlimentosRicos} B: ${vitAlimento}`);
+
             let contenedor1 = document.createElement("div");
             let listaVitAlimento1 = document.createElement("ul");
 
@@ -110,6 +115,9 @@ function queAlimentosTienenXVitamina(vit) {
             document.body.appendChild(contenedor1);
             break;
         case 'C':
+            vitAlimento = c.join(", ");
+            alert(`${textoAlimentosRicos} C: ${vitAlimento}`);
+
             let contenedor2 = document.createElement("div");
             let listaVitAlimento2 = document.createElement("ul");
 
@@ -126,6 +134,9 @@ function queAlimentosTienenXVitamina(vit) {
             document.body.appendChild(contenedor2);
             break;
         case 'D':
+            vitAlimento = d.join(", ");
+            alert(`${textoAlimentosRicos} D: ${vitAlimento}`);
+
             let contenedor3 = document.createElement("div");
             let listaVitAlimento3 = document.createElement("ul");
 
@@ -147,15 +158,46 @@ function queAlimentosTienenXVitamina(vit) {
 function caloriasPorReceta() {
     let seguir = true;
     let sumaCalorias = 0;
+    let contenedor = document.createElement("div");
+    let listaReceta = document.createElement("ul");
+    contenedor.appendChild(listaReceta);
+
     while (seguir) {
         let respuesta = prompt("Selecciona un alimento de la lista: [1] salmón, [2] hígado, [3] huevo, [4]papa, [5] brócoli, [6] tomate, [7] queso, [8] manzana o [9] frutilla");
+
         let cantidad = prompt("Ingrese el número de gramos (minimo 100gr).") / 100;
         sumaCalorias += (listaAlimentos[respuesta - 1].calorias * cantidad);
+
+        let item = document.createElement("li");
+        item.innerHTML = `${listaAlimentos[respuesta - 1].nombre} - ${cantidad * 100}grs`;
+        listaReceta.appendChild(item);
+
         if ("N" == prompt("Desea sumar otro alimento? [S] Si, [N] No").toUpperCase()) {
             alert("La suma de calorías para esa receta es: " + sumaCalorias);
+            contenedor.innerHTML = `
+                    <h2> La suma de calorías para esa receta es: ${sumaCalorias} </h2>
+                    <h3> Ingredientes y cantidades: </h3>
+                    ${listaReceta.outerHTML}`;
+            document.body.appendChild(contenedor);
             seguir = false;
         }
     }
+    /* para referencia
+     let contenedor3 = document.createElement("div");
+            let listaVitAlimento3 = document.createElement("ul");
+
+            contenedor3.appendChild(listaVitAlimento3);
+
+            for (const alim of d) {
+                let item = document.createElement("li");
+                item.innerHTML = alim;
+                listaVitAlimento3.appendChild(item);
+            }
+            contenedor3.innerHTML = `
+                    <h2> ${textoAlimentosRicos} D: </h2>
+                    ${listaVitAlimento3.outerHTML}`;
+            document.body.appendChild(contenedor3);
+    */
 }
 
 
