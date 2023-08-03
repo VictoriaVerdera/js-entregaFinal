@@ -94,16 +94,52 @@ function queAlimentosTienenXVitamina(vit) {
 
             break;
         case 'B':
-            vitAlimento = b.join(", ");
-            alert(`${textoAlimentosRicos} B: ${vitAlimento}`);
+            let contenedor1 = document.createElement("div");
+            let listaVitAlimento1 = document.createElement("ul");
+
+            contenedor1.appendChild(listaVitAlimento1);
+
+            for (const alim of b) {
+                let item = document.createElement("li");
+                item.innerHTML = alim;
+                listaVitAlimento1.appendChild(item);
+            }
+            contenedor1.innerHTML = `
+                    <h2> ${textoAlimentosRicos} B: </h2>
+                    ${listaVitAlimento1.outerHTML}`;
+            document.body.appendChild(contenedor1);
             break;
         case 'C':
-            vitAlimento = c.join(", ");
-            alert(`${textoAlimentosRicos} C: ${vitAlimento}`);
+            let contenedor2 = document.createElement("div");
+            let listaVitAlimento2 = document.createElement("ul");
+
+            contenedor2.appendChild(listaVitAlimento2);
+
+            for (const alim of c) {
+                let item = document.createElement("li");
+                item.innerHTML = alim;
+                listaVitAlimento2.appendChild(item);
+            }
+            contenedor2.innerHTML = `
+                    <h2> ${textoAlimentosRicos} C: </h2>
+                    ${listaVitAlimento2.outerHTML}`;
+            document.body.appendChild(contenedor2);
             break;
         case 'D':
-            vitAlimento = d.join(", ");
-            alert(`${textoAlimentosRicos} D: ${vitAlimento}`);
+            let contenedor3 = document.createElement("div");
+            let listaVitAlimento3 = document.createElement("ul");
+
+            contenedor3.appendChild(listaVitAlimento3);
+
+            for (const alim of d) {
+                let item = document.createElement("li");
+                item.innerHTML = alim;
+                listaVitAlimento3.appendChild(item);
+            }
+            contenedor3.innerHTML = `
+                    <h2> ${textoAlimentosRicos} D: </h2>
+                    ${listaVitAlimento3.outerHTML}`;
+            document.body.appendChild(contenedor3);
             break;
     }
 }
