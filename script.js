@@ -215,3 +215,24 @@ alimentoCaloriasSeleccionado.onchange = () => {
     /* Guardo en el local storage el nombre del ultimo alimento seleccionado */
     localStorage.setItem('alimentoCaloriasNombre', nombreAlimento);
 }
+
+/* OPCION B */
+//queAlimentosTienenXVitamina(vitamina);
+
+let alimentosVitaminaSelect = document.getElementById("alimentosVitamina");
+
+alimentosVitaminaSelect.onchange = () => {
+    let vitSeleccionada = alimentosVitaminaSelect.options[alimentosVitaminaSelect.selectedIndex.value]
+
+    console.log(vitSeleccionada)
+
+    /*
+        listaAlimentos[alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.selectedIndex].value - 1].caloriasCadaCienGramos();
+    
+        console.log(alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.selectedIndex].value)
+    
+        /* Guardo en el local storage el nombre del ultimo alimento seleccionado */
+    /*
+      localStorage.setItem('alimentoCaloriasNombre', nombreAlimento);
+  */
+}
