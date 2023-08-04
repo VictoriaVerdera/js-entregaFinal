@@ -12,7 +12,7 @@ class Alimento {
     }
 
     caloriasCadaCienGramos() {
-        alert(`100grs de ${this.nombre} tienen ${this.calorias} calorías.`);
+        //alert(`100grs de ${this.nombre} tienen ${this.calorias} calorías.`);
 
         let contenedor = document.createElement("div");
         contenedor.innerHTML = `
@@ -200,12 +200,18 @@ function caloriasPorReceta() {
     */
 //}
 
-/* PROBANDO */
+/* OPCION A */
 
-// listaAlimentos[alimentoCaloria - 1].caloriasCadaCienGramos();
 let alimentoCaloriasSeleccionado = document.getElementById("alimentoCaloria");
-console.log(alimentoCaloriasSeleccionado)
-/*alimentoCaloriasSeleccionado.onclick = () => { listaAlimentos[alimentoCaloriasSeleccionado - 1].caloriasCadaCienGramos(); }*/
-let getValue = alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.selectedIndex].value;
-console.log(getValue);
-alimentoCaloriasSeleccionado.onclick = () => { console.log(listaAlimentos[getValue - 1].caloriasCadaCienGramos()); }
+
+alimentoCaloriasSeleccionado.onchange = () => {
+    let nombreAlimento = listaAlimentos[alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.
+        selectedIndex].value - 1].nombre;
+
+    listaAlimentos[alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.selectedIndex].value - 1].caloriasCadaCienGramos();
+
+    console.log(alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.selectedIndex].value)
+
+    /* Guardo en el local storage el nombre del ultimo alimento seleccionado */
+    localStorage.setItem('alimentoCaloriasNombre', nombreAlimento);
+}
