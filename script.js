@@ -205,4 +205,7 @@ function caloriasPorReceta() {
 // listaAlimentos[alimentoCaloria - 1].caloriasCadaCienGramos();
 let alimentoCaloriasSeleccionado = document.getElementById("alimentoCaloria");
 console.log(alimentoCaloriasSeleccionado)
-alimentoCaloriasSeleccionado.onchange = () => { listaAlimentos[alimentoCaloriasSeleccionado - 1].caloriasCadaCienGramos(); }
+/*alimentoCaloriasSeleccionado.onclick = () => { listaAlimentos[alimentoCaloriasSeleccionado - 1].caloriasCadaCienGramos(); }*/
+let getValue = alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.selectedIndex].value;
+console.log(getValue);
+alimentoCaloriasSeleccionado.onclick = () => { console.log(listaAlimentos[getValue - 1].caloriasCadaCienGramos()); }
