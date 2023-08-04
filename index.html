@@ -12,6 +12,48 @@
     <header>
         <h1>Guía de alimentación saludable</h1>
     </header>
+    <section>
+        <div>
+            <h2>Selecciona la opción deseada:</h2>
+
+            <!-- OPCION A -->
+            <fieldset>
+                <legend>Buscar el índice calórico de un alimento</legend>
+                <div>
+                    <form action="" method="post">
+                        <!-- [1] salmón, [2] hígado, [3] huevo, [4]papa, [5] brócoli, [6] tomate, [7] queso, [8] manzana o [9] frutilla-->
+                        <select name="opcionA" id="alimentoCaloria">
+                            <option value="1">Salmón</option>
+                            <option value="2">Hígado</option>
+                            <option value="3">Huevo</option>
+                            <option value="4">Papa</option>
+                            <option value="5">Brócoli</option>
+                            <option value="6">Tomate</option>
+                            <option value="7">Queso</option>
+                            <option value="8">Manzana</option>
+                            <option value="9">Frutilla</option>
+                        </select><br><br>
+                        <input id="btn-opt-a" type="submit" value="OK" />
+                    </form>
+                </div>
+            </fieldset>
+            <form action="" method="post">
+
+
+
+                <input type="radio" id="opcionB" name="contact" value="phone" />
+                <label for="opcionB">Phone</label>
+
+                <input type="radio" id="opcionC" name="contact" value="mail" />
+                <label for="opcionC">Mail</label>
+            </form>
+            <!--
+                Seleccione la opción deseada: [A] Buscar el índice calórico de un alimento; [B] Buscar alimentos por vitamina; [C] Calcular las calorías de una receta. [X] Salir
+            -->
+
+        </div>
+    </section>
+
 
     <script src="script.js"></script>
 </body>

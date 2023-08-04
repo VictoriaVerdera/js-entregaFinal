@@ -45,7 +45,7 @@ let b = ["cereal integral", "carne", "pescado", "huevo", "legumbre"];
 let c = ["brocoli", "frutilla", "melón", "papa", "tomate"];
 let d = ["pescado graso", "hígado", "yema de huevo", "queso", "hongo"];
 
-
+/*
 
 while (!salir) {
     respuesta = prompt("Seleccione la opción deseada: [A] Buscar el índice calórico de un alimento; [B] Buscar alimentos por vitamina; [C] Calcular las calorías de una receta. [X] Salir")
@@ -198,6 +198,11 @@ function caloriasPorReceta() {
                     ${listaVitAlimento3.outerHTML}`;
             document.body.appendChild(contenedor3);
     */
-}
+//}
 
+/* PROBANDO */
 
+// listaAlimentos[alimentoCaloria - 1].caloriasCadaCienGramos();
+let alimentoCaloriasSeleccionado = document.getElementById("alimentoCaloria");
+console.log(alimentoCaloriasSeleccionado)
+alimentoCaloriasSeleccionado.onchange = () => { listaAlimentos[alimentoCaloriasSeleccionado - 1].caloriasCadaCienGramos(); }
