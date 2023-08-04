@@ -45,31 +45,6 @@ let b = ["cereal integral", "carne", "pescado", "huevo", "legumbre"];
 let c = ["brocoli", "frutilla", "melón", "papa", "tomate"];
 let d = ["pescado graso", "hígado", "yema de huevo", "queso", "hongo"];
 
-/*
-
-while (!salir) {
-    respuesta = prompt("Seleccione la opción deseada: [A] Buscar el índice calórico de un alimento; [B] Buscar alimentos por vitamina; [C] Calcular las calorías de una receta. [X] Salir")
-    respuesta = respuesta.toUpperCase();
-
-    const listaOpciones = ["Selecciona un alimento de la lista: [1] salmón, [2] hígado, [3] huevo, [4]papa, [5] brócoli, [6] tomate, [7] queso, [8] manzana o [9] frutilla", "Selecciona una vitamina: A, B, C, D."];
-
-    if (respuesta == "A") {
-        let alimentoCaloria = prompt(listaOpciones[0]);
-        listaAlimentos[alimentoCaloria - 1].caloriasCadaCienGramos();
-        // Buscar el índice calórico de un alimento
-    } else if (respuesta == "B") {
-        // Buscar alimentos por vitamina
-        let vitamina = prompt(listaOpciones[1]).toUpperCase();
-        queAlimentosTienenXVitamina(vitamina);
-    } else if (respuesta == "C") {
-        caloriasPorReceta();
-        // Calcular las calorías de una receta
-    } else if (respuesta == "X") {
-        salir = true;
-    } else {
-        alert("Respuesta incorrecta, seleccione una opción.");
-    }
-}
 
 function queAlimentosTienenXVitamina(vit) {
     let vitAlimento;
@@ -182,23 +157,33 @@ function caloriasPorReceta() {
             seguir = false;
         }
     }
-    /* para referencia
-     let contenedor3 = document.createElement("div");
-            let listaVitAlimento3 = document.createElement("ul");
-
-            contenedor3.appendChild(listaVitAlimento3);
-
-            for (const alim of d) {
-                let item = document.createElement("li");
-                item.innerHTML = alim;
-                listaVitAlimento3.appendChild(item);
-            }
-            contenedor3.innerHTML = `
-                    <h2> ${textoAlimentosRicos} D: </h2>
-                    ${listaVitAlimento3.outerHTML}`;
-            document.body.appendChild(contenedor3);
-    */
-//}
+}
+/*
+ 
+while (!salir) {
+    respuesta = prompt("Seleccione la opción deseada: [A] Buscar el índice calórico de un alimento; [B] Buscar alimentos por vitamina; [C] Calcular las calorías de una receta. [X] Salir")
+    respuesta = respuesta.toUpperCase();
+ 
+    const listaOpciones = ["Selecciona un alimento de la lista: [1] salmón, [2] hígado, [3] huevo, [4]papa, [5] brócoli, [6] tomate, [7] queso, [8] manzana o [9] frutilla", "Selecciona una vitamina: A, B, C, D."];
+ 
+    if (respuesta == "A") {
+        let alimentoCaloria = prompt(listaOpciones[0]);
+        listaAlimentos[alimentoCaloria - 1].caloriasCadaCienGramos();
+        // Buscar el índice calórico de un alimento
+    } else if (respuesta == "B") {
+        // Buscar alimentos por vitamina
+        let vitamina = prompt(listaOpciones[1]).toUpperCase();
+        queAlimentosTienenXVitamina(vitamina);
+    } else if (respuesta == "C") {
+        caloriasPorReceta();
+        // Calcular las calorías de una receta
+    } else if (respuesta == "X") {
+        salir = true;
+    } else {
+        alert("Respuesta incorrecta, seleccione una opción.");
+    }
+}
+*/
 
 /* OPCION A */
 
@@ -217,22 +202,14 @@ alimentoCaloriasSeleccionado.onchange = () => {
 }
 
 /* OPCION B */
-//queAlimentosTienenXVitamina(vitamina);
+
 
 let alimentosVitaminaSelect = document.getElementById("alimentosVitamina");
 
 alimentosVitaminaSelect.onchange = () => {
-    let vitSeleccionada = alimentosVitaminaSelect.options[alimentosVitaminaSelect.selectedIndex.value]
+    let vitSeleccionada = alimentosVitaminaSelect.options[alimentosVitaminaSelect.selectedIndex].innerText;
 
     console.log(vitSeleccionada)
 
-    /*
-        listaAlimentos[alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.selectedIndex].value - 1].caloriasCadaCienGramos();
-    
-        console.log(alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.selectedIndex].value)
-    
-        /* Guardo en el local storage el nombre del ultimo alimento seleccionado */
-    /*
-      localStorage.setItem('alimentoCaloriasNombre', nombreAlimento);
-  */
+    queAlimentosTienenXVitamina(vitSeleccionada);
 }
