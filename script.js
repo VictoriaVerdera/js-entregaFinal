@@ -2,6 +2,9 @@ let salir = false;
 let respuesta;
 let textoAlimentosRicos = "Alimentos ricos en vitamina ";
 
+const divProductos = document.getElementById('productos')
+const divVitamina = document.getElementById('vitaminas')
+const divRecetas = document.getElementById('recetas')
 
 class Alimento {
 
@@ -13,7 +16,13 @@ class Alimento {
 
     caloriasCadaCienGramos() {
         //alert(`100grs de ${this.nombre} tienen ${this.calorias} calorías.`);
+        divProductos.innerHTML = ''
 
+        const productoSeleccionado = `Producto :${this.nombre}, precio: ${this.precio}, calorías: ${this.calorias} `
+
+        localStorage.setItem('Producto', productoSeleccionado)
+
+        console.log(localStorage)
         let contenedor = document.createElement("div");
         contenedor.innerHTML = `
                 <p> 
@@ -23,22 +32,23 @@ class Alimento {
                     <strong> ${this.calorias} </strong> 
                     calorías.
                 </p>`;
-        document.body.appendChild(contenedor);
+        divProductos.appendChild(contenedor);
     }
-
 }
 
-let listaAlimentos = new Array();
+let listaAlimentos = [];
 
-listaAlimentos.push(new Alimento("salmon", 208, 100));
-listaAlimentos.push(new Alimento("hígado", 165));
-listaAlimentos.push(new Alimento("huevo", 155));
-listaAlimentos.push(new Alimento("papa", 86));
-listaAlimentos.push(new Alimento("brócoli", 34));
-listaAlimentos.push(new Alimento("tomate", 20));
-listaAlimentos.push(new Alimento("queso", 402));
-listaAlimentos.push(new Alimento("manzana", 52));
-listaAlimentos.push(new Alimento("frutilla", 25));
+const alimento1 = new Alimento("salmon", 208, 100)
+const alimento2 = new Alimento("hígado", 165, 200)
+const alimento3 = new Alimento("huevo", 155, 300)
+const alimento4 = new Alimento("papa", 86, 150)
+const alimento5 = new Alimento("brócoli", 34, 500)
+const alimento6 = new Alimento("tomate", 20, 350)
+const alimento7 = new Alimento("queso", 402, 600)
+const alimento8 = new Alimento("manzana", 52, 550)
+const alimento9 = new Alimento("frutilla", 25, 800)
+
+listaAlimentos.push(alimento1, alimento2, alimento3, alimento4, alimento5, alimento6, alimento7, alimento8, alimento9);
 
 let a = ["salmón", "hígado vacuno", "espinaca", "batatas", "zanahoria", "brócoli", "calabaza", "melón", "mango", "manzana"];
 let b = ["cereal integral", "carne", "pescado", "huevo", "legumbre"];
@@ -48,14 +58,17 @@ let d = ["pescado graso", "hígado", "yema de huevo", "queso", "hongo"];
 
 function queAlimentosTienenXVitamina(vit) {
     let vitAlimento;
+    let divVitamina = document.getElementById("vitaminas");
+    divVitamina.innerHTML = ''
+    let contenedor = document.createElement("div");
+    let listaVitAlimento = document.createElement("ul");
+
     switch (vit) {
         case 'A':
-
             vitAlimento = a.join(", ");
-            alert(`${textoAlimentosRicos} A: ${vitAlimento}`);
 
-            let contenedor = document.createElement("div");
-            let listaVitAlimento = document.createElement("ul");
+            localStorage.setItem('Vitamina', vit)
+            console.log(localStorage)
 
             contenedor.appendChild(listaVitAlimento);
 
@@ -67,67 +80,60 @@ function queAlimentosTienenXVitamina(vit) {
             contenedor.innerHTML = `
                     <h2> ${textoAlimentosRicos} A: </h2>
                     ${listaVitAlimento.outerHTML}`;
-            document.body.appendChild(contenedor);
-
             break;
         case 'B':
             vitAlimento = b.join(", ");
-            alert(`${textoAlimentosRicos} B: ${vitAlimento}`);
 
-            let contenedor1 = document.createElement("div");
-            let listaVitAlimento1 = document.createElement("ul");
+            localStorage.setItem('Vitamina', vit)
+            console.log(localStorage)
 
-            contenedor1.appendChild(listaVitAlimento1);
+            contenedor.appendChild(listaVitAlimento);
 
             for (const alim of b) {
                 let item = document.createElement("li");
                 item.innerHTML = alim;
-                listaVitAlimento1.appendChild(item);
+                listaVitAlimento.appendChild(item);
             }
-            contenedor1.innerHTML = `
-                    <h2> ${textoAlimentosRicos} B: </h2>
-                    ${listaVitAlimento1.outerHTML}`;
-            document.body.appendChild(contenedor1);
+            contenedor.innerHTML = `
+                <h2> ${textoAlimentosRicos} B: </h2>
+                ${listaVitAlimento.outerHTML}`;
             break;
         case 'C':
             vitAlimento = c.join(", ");
-            alert(`${textoAlimentosRicos} C: ${vitAlimento}`);
 
-            let contenedor2 = document.createElement("div");
-            let listaVitAlimento2 = document.createElement("ul");
+            localStorage.setItem('Vitamina', vit)
+            console.log(localStorage)
 
-            contenedor2.appendChild(listaVitAlimento2);
+            contenedor.appendChild(listaVitAlimento);
 
             for (const alim of c) {
                 let item = document.createElement("li");
                 item.innerHTML = alim;
-                listaVitAlimento2.appendChild(item);
+                listaVitAlimento.appendChild(item);
             }
-            contenedor2.innerHTML = `
-                    <h2> ${textoAlimentosRicos} C: </h2>
-                    ${listaVitAlimento2.outerHTML}`;
-            document.body.appendChild(contenedor2);
+            contenedor.innerHTML = `
+                <h2> ${textoAlimentosRicos} C: </h2>
+                ${listaVitAlimento.outerHTML}`;
             break;
         case 'D':
             vitAlimento = d.join(", ");
-            alert(`${textoAlimentosRicos} D: ${vitAlimento}`);
 
-            let contenedor3 = document.createElement("div");
-            let listaVitAlimento3 = document.createElement("ul");
+            localStorage.setItem('Vitamina', vit)
+            console.log(localStorage)
 
-            contenedor3.appendChild(listaVitAlimento3);
+            contenedor.appendChild(listaVitAlimento);
 
             for (const alim of d) {
                 let item = document.createElement("li");
                 item.innerHTML = alim;
-                listaVitAlimento3.appendChild(item);
+                listaVitAlimento.appendChild(item);
             }
-            contenedor3.innerHTML = `
-                    <h2> ${textoAlimentosRicos} D: </h2>
-                    ${listaVitAlimento3.outerHTML}`;
-            document.body.appendChild(contenedor3);
+            contenedor.innerHTML = `
+                <h2> ${textoAlimentosRicos} D: </h2>
+                ${listaVitAlimento.outerHTML}`;
             break;
     }
+    divVitamina.appendChild(contenedor);
 }
 
 function caloriasPorReceta() {
@@ -187,18 +193,19 @@ while (!salir) {
 
 /* OPCION A */
 
+//////////// A
 let alimentoCaloriasSeleccionado = document.getElementById("alimentoCaloria");
+alimentoCaloriasSeleccionado.onchange = (e) => {
+    const productoSeleccionado = e.target.value
 
-alimentoCaloriasSeleccionado.onchange = () => {
-    let nombreAlimento = listaAlimentos[alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.
-        selectedIndex].value - 1].nombre;
+    if (productoSeleccionado != '0') {
+        const seleccion = listaAlimentos.find(prod => prod.nombre === productoSeleccionado)
+        seleccion.caloriasCadaCienGramos();
+    }
+    else {
+        alert('No has seleccionado alimentos')
+    }
 
-    listaAlimentos[alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.selectedIndex].value - 1].caloriasCadaCienGramos();
-
-    console.log(alimentoCaloriasSeleccionado.options[alimentoCaloriasSeleccionado.selectedIndex].value)
-
-    /* Guardo en el local storage el nombre del ultimo alimento seleccionado */
-    localStorage.setItem('alimentoCaloriasNombre', nombreAlimento);
 }
 
 /* OPCION B */

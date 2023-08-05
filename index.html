@@ -22,17 +22,19 @@
                 <div>
                     <!-- [1] salmón, [2] hígado, [3] huevo, [4]papa, [5] brócoli, [6] tomate, [7] queso, [8] manzana o [9] frutilla-->
                     <select name="opcionA" id="alimentoCaloria">
-                        <option value="1">Salmón</option>
-                        <option value="2">Hígado</option>
-                        <option value="3">Huevo</option>
-                        <option value="4">Papa</option>
-                        <option value="5">Brócoli</option>
-                        <option value="6">Tomate</option>
-                        <option value="7">Queso</option>
-                        <option value="8">Manzana</option>
-                        <option value="9">Frutilla</option>
+                        <option value="0">Alimento</option>
+                        <option value="salmon">Salmón</option>
+                        <option value="higado">Hígado</option>
+                        <option value="huevo">Huevo</option>
+                        <option value="papa">Papa</option>
+                        <option value="brocoli">Brócoli</option>
+                        <option value="tomate">Tomate</option>
+                        <option value="queso">Queso</option>
+                        <option value="manzana">Manzana</option>
+                        <option value="frutilla">Frutilla</option>
                     </select><br><br>
                 </div>
+                <div id="productos"></div>
             </fieldset>
             <!--
                 Seleccione la opción deseada: [A] Buscar el índice calórico de un alimento; [B] Buscar alimentos por vitamina; [C] Calcular las calorías de una receta. [X] Salir
@@ -41,17 +43,22 @@
             <!-- Buscar alimentos por vitamina -->
             <fieldset>
                 <legend>Selecciona una vitamina: </legend>
-                <div>
+                <div id="seleccionoVitamina">
                     <select name="opcionB" id="alimentosVitamina">
+                        <option value="0">Vitamina</option>
                         <option value="a">A</option>
                         <option value="b">B</option>
                         <option value="c">C</option>
                         <option value="d">D</option>
                     </select><br><br>
                 </div>
+                <div id="vitaminas"></div>
             </fieldset>
 
+            <div id="recetas"></div>
         </div>
+
+
     </section>
 
 
