@@ -139,11 +139,16 @@ function queAlimentosTienenXVitamina(vit) {
 function caloriasPorReceta() {
     let seguir = true;
     let sumaCalorias = 0;
+
+    let divReceta = document.getElementById("recetas");
+    divVitamina.innerHTML = ''
     let contenedor = document.createElement("div");
+
     let listaReceta = document.createElement("ul");
     contenedor.appendChild(listaReceta);
 
     while (seguir) {
+
         let respuesta = prompt("Selecciona un alimento de la lista: [1] salmón, [2] hígado, [3] huevo, [4]papa, [5] brócoli, [6] tomate, [7] queso, [8] manzana o [9] frutilla");
 
         let cantidad = prompt("Ingrese el número de gramos (minimo 100gr).") / 100;
@@ -163,6 +168,8 @@ function caloriasPorReceta() {
             seguir = false;
         }
     }
+
+    divReceta.appendChild(contenedor);
 }
 /*
  
@@ -209,8 +216,6 @@ alimentoCaloriasSeleccionado.onchange = (e) => {
 }
 
 /* OPCION B */
-
-
 let alimentosVitaminaSelect = document.getElementById("alimentosVitamina");
 
 alimentosVitaminaSelect.onchange = () => {
@@ -220,3 +225,6 @@ alimentosVitaminaSelect.onchange = () => {
 
     queAlimentosTienenXVitamina(vitSeleccionada);
 }
+
+/* OPCION C */
+//caloriasPorReceta();

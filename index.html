@@ -19,8 +19,8 @@
             <!-- OPCION A -->
             <fieldset>
                 <legend>Buscar el índice calórico de un alimento</legend>
+                <br>
                 <div>
-                    <!-- [1] salmón, [2] hígado, [3] huevo, [4]papa, [5] brócoli, [6] tomate, [7] queso, [8] manzana o [9] frutilla-->
                     <select name="opcionA" id="alimentoCaloria">
                         <option value="0">Alimento</option>
                         <option value="salmon">Salmón</option>
@@ -36,13 +36,12 @@
                 </div>
                 <div id="productos"></div>
             </fieldset>
-            <!--
-                Seleccione la opción deseada: [A] Buscar el índice calórico de un alimento; [B] Buscar alimentos por vitamina; [C] Calcular las calorías de una receta. [X] Salir
-            -->
+
             <!-- OPCION B -->
             <!-- Buscar alimentos por vitamina -->
             <fieldset>
                 <legend>Selecciona una vitamina: </legend>
+                <br>
                 <div id="seleccionoVitamina">
                     <select name="opcionB" id="alimentosVitamina">
                         <option value="0">Vitamina</option>
@@ -55,10 +54,32 @@
                 <div id="vitaminas"></div>
             </fieldset>
 
-            <div id="recetas"></div>
-        </div>
-
-
+            <!-- OPCION C -->
+            <fieldset>
+                <legend>Ingresa una receta para ver sus calorias totales</legend>
+                <br>
+                <div id="seleccionoReceta">
+                    <label for="opcionC">Selecciona un alimento de la lista:</label>
+                    <select name="opcionC" id="alimentosReceta">
+                        <option value="0">Alimento</option>
+                        <option value="salmon">Salmón</option>
+                        <option value="higado">Hígado</option>
+                        <option value="huevo">Huevo</option>
+                        <option value="papa">Papa</option>
+                        <option value="brocoli">Brócoli</option>
+                        <option value="tomate">Tomate</option>
+                        <option value="queso">Queso</option>
+                        <option value="manzana">Manzana</option>
+                        <option value="frutilla">Frutilla</option>
+                    </select><br><br>
+                </div>
+                <label for="gramos">Ingrese el número de gramos (minimo 100gr).</label>
+                <input type="text" id="gramos" name="gramos" required minlength="4" maxlength="8" size="10" />
+                <br><br>
+                <button>Agregar alimento</button>
+                <!-- Aca muestro el resultado -->
+                <div id="recetas"></div>
+            </fieldset>
     </section>
 
 
