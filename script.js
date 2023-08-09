@@ -15,7 +15,6 @@ class Alimento {
     }
 
     caloriasCadaCienGramos() {
-        //alert(`100grs de ${this.nombre} tienen ${this.calorias} calorías.`);
         divProductos.innerHTML = ''
 
         const productoSeleccionado = `Producto :${this.nombre}, precio: ${this.precio}, calorías: ${this.calorias} `
@@ -138,94 +137,77 @@ function queAlimentosTienenXVitamina(vit) {
 
 /* OPCION A */
 
-//////////// A
 let alimentoCaloriasSeleccionado = document.getElementById("alimentoCaloria");
+
 alimentoCaloriasSeleccionado.onchange = (e) => {
     const productoSeleccionado = e.target.value
 
-    if (productoSeleccionado != '0') {
+    if (productoSeleccionado != '0' || alert('No has seleccionado alimentos')) {
         let seleccion = listaAlimentos.find(prod => prod.nombre === productoSeleccionado)
         seleccion.caloriasCadaCienGramos();
-    }
-    else {
-        alert('No has seleccionado alimentos')
     }
 
 }
 
 /* OPCION B */
+
 let alimentosVitaminaSelect = document.getElementById("alimentosVitamina");
 
 alimentosVitaminaSelect.onchange = () => {
+
     let vitSeleccionada = alimentosVitaminaSelect.options[alimentosVitaminaSelect.selectedIndex].innerText;
-
-    console.log(vitSeleccionada)
-
     queAlimentosTienenXVitamina(vitSeleccionada);
+
 }
 
 /* OPCION C */
 
-//caloriasPorReceta();
 let alimentoParaReceta = document.getElementById("alimentosReceta");
-console.log(alimentoParaReceta)
-
 let seleccionReceta = "";
+let alimSeleccionado;
 
 alimentoParaReceta.onchange = (e) => {
-    const alimSeleccionado = e.target.value;
+    alimSeleccionado = e.target.value;
     seleccionReceta = listaAlimentos.find(alim => alim.nombre === alimSeleccionado)
-
-    console.log(alimSeleccionado, seleccionReceta);
 }
 
 let gramosSeleccionados = document.getElementById("gramos").value;
 
 let sumaCalorias = 0;
 
+let divReceta = document.getElementById("recetas");
+divReceta.innerHTML = '';
+let contenedor = document.createElement("div");
 
+let listaReceta = document.createElement("ul");
+contenedor.appendChild(listaReceta);
 
 function agregarAReceta() {
-
-    let divReceta = document.getElementById("recetas");
-    divReceta.innerHTML = '';
-    let contenedor = document.createElement("div");
-
-    let listaReceta = document.createElement("ul");
-    contenedor.appendChild(listaReceta);
-
     gramosSeleccionados = document.getElementById("gramos").value;
 
-    /////// nuevo, parte del alimento seleccionado
-    if (alimentoParaReceta != '0') {
-        let seleccionadoAlimentoReceta = listaAlimentos.find(prod => prod.nombre === alimentoParaReceta)
-        ///////// nuevo, parte de los gramos seleccionados
-        if (gramosSeleccionados >= 100) {
+    if (seleccionReceta || alert('No has seleccionado alimentos')) {
+        // DESTRUCTURING OBJETO ALIMENTO
+        const { nombre, calorias } = seleccionReceta;
+
+        if (gramosSeleccionados >= 100 || alert('Seleccione una cantidad de gramos, minimo 100')) {
 
             let cantidad = gramosSeleccionados / 100;
-            console.log("seleccion calorias " + seleccionadoAlimentoReceta.calorias)
-            //sumaCalorias += (seleccion.calorias * cantidad);
+
+            sumaCalorias += (calorias * cantidad);
 
             let item = document.createElement("li");
-            item.innerHTML = `${listaAlimentos[respuesta - 1].nombre} - ${cantidad * 100}grs`;
+            item.innerHTML = `${nombre} - ${cantidad * 100}grs`;
             listaReceta.appendChild(item);
 
             contenedor.innerHTML = `
                     <h2> La suma de calorías para esa receta es: ${sumaCalorias} </h2>
                     <h3> Ingredientes y cantidades: </h3>
                     ${listaReceta.outerHTML}`;
-            document.body.appendChild(contenedor);
 
+            document.body.appendChild(contenedor);
             divReceta.appendChild(contenedor);
 
         }
-        else {
-            alert('Seleccione una cantidad de gramos, minimo 100')
-        }
     }
-    else {
-        alert('No has seleccionado alimentos')
-    }
-
 }
 
