@@ -58,7 +58,7 @@
             <fieldset>
                 <legend>Ingresa una receta para ver sus calorias totales</legend>
                 <br>
-                <div id="seleccionoReceta">
+                <form id="seleccionoReceta">
                     <label for="opcionC">Selecciona un alimento de la lista:</label>
                     <select name="opcionC" id="alimentosReceta">
                         <option value="0">Alimento</option>
@@ -72,11 +72,11 @@
                         <option value="manzana">Manzana</option>
                         <option value="frutilla">Frutilla</option>
                     </select><br><br>
-                </div>
-                <label for="gramos">Ingrese el número de gramos (minimo 100gr).</label>
-                <input type="text" id="gramos" name="gramos" required minlength="4" maxlength="8" size="10" />
-                <br><br>
-                <button>Agregar alimento</button>
+                    <label for="gramos">Ingrese el número de gramos (minimo 100gr).</label>
+                    <input type="text" id="gramos" name="gramos" required minlength="4" maxlength="8" size="10" />
+                    <br><br>
+                    <input type="button" onclick="agregarAReceta()" value="Agregar a receta">
+                </form>
                 <!-- Aca muestro el resultado -->
                 <div id="recetas"></div>
             </fieldset>

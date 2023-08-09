@@ -136,68 +136,6 @@ function queAlimentosTienenXVitamina(vit) {
     divVitamina.appendChild(contenedor);
 }
 
-function caloriasPorReceta() {
-    let seguir = true;
-    let sumaCalorias = 0;
-
-    let divReceta = document.getElementById("recetas");
-    divVitamina.innerHTML = ''
-    let contenedor = document.createElement("div");
-
-    let listaReceta = document.createElement("ul");
-    contenedor.appendChild(listaReceta);
-
-    while (seguir) {
-
-        let respuesta = prompt("Selecciona un alimento de la lista: [1] salmón, [2] hígado, [3] huevo, [4]papa, [5] brócoli, [6] tomate, [7] queso, [8] manzana o [9] frutilla");
-
-        let cantidad = prompt("Ingrese el número de gramos (minimo 100gr).") / 100;
-        sumaCalorias += (listaAlimentos[respuesta - 1].calorias * cantidad);
-
-        let item = document.createElement("li");
-        item.innerHTML = `${listaAlimentos[respuesta - 1].nombre} - ${cantidad * 100}grs`;
-        listaReceta.appendChild(item);
-
-        if ("N" == prompt("Desea sumar otro alimento? [S] Si, [N] No").toUpperCase()) {
-            alert("La suma de calorías para esa receta es: " + sumaCalorias);
-            contenedor.innerHTML = `
-                    <h2> La suma de calorías para esa receta es: ${sumaCalorias} </h2>
-                    <h3> Ingredientes y cantidades: </h3>
-                    ${listaReceta.outerHTML}`;
-            document.body.appendChild(contenedor);
-            seguir = false;
-        }
-    }
-
-    divReceta.appendChild(contenedor);
-}
-/*
- 
-while (!salir) {
-    respuesta = prompt("Seleccione la opción deseada: [A] Buscar el índice calórico de un alimento; [B] Buscar alimentos por vitamina; [C] Calcular las calorías de una receta. [X] Salir")
-    respuesta = respuesta.toUpperCase();
- 
-    const listaOpciones = ["Selecciona un alimento de la lista: [1] salmón, [2] hígado, [3] huevo, [4]papa, [5] brócoli, [6] tomate, [7] queso, [8] manzana o [9] frutilla", "Selecciona una vitamina: A, B, C, D."];
- 
-    if (respuesta == "A") {
-        let alimentoCaloria = prompt(listaOpciones[0]);
-        listaAlimentos[alimentoCaloria - 1].caloriasCadaCienGramos();
-        // Buscar el índice calórico de un alimento
-    } else if (respuesta == "B") {
-        // Buscar alimentos por vitamina
-        let vitamina = prompt(listaOpciones[1]).toUpperCase();
-        queAlimentosTienenXVitamina(vitamina);
-    } else if (respuesta == "C") {
-        caloriasPorReceta();
-        // Calcular las calorías de una receta
-    } else if (respuesta == "X") {
-        salir = true;
-    } else {
-        alert("Respuesta incorrecta, seleccione una opción.");
-    }
-}
-*/
-
 /* OPCION A */
 
 //////////// A
@@ -206,7 +144,7 @@ alimentoCaloriasSeleccionado.onchange = (e) => {
     const productoSeleccionado = e.target.value
 
     if (productoSeleccionado != '0') {
-        const seleccion = listaAlimentos.find(prod => prod.nombre === productoSeleccionado)
+        let seleccion = listaAlimentos.find(prod => prod.nombre === productoSeleccionado)
         seleccion.caloriasCadaCienGramos();
     }
     else {
@@ -227,4 +165,67 @@ alimentosVitaminaSelect.onchange = () => {
 }
 
 /* OPCION C */
+
 //caloriasPorReceta();
+let alimentoParaReceta = document.getElementById("alimentosReceta");
+console.log(alimentoParaReceta)
+
+let seleccionReceta = "";
+
+alimentoParaReceta.onchange = (e) => {
+    const alimSeleccionado = e.target.value;
+    seleccionReceta = listaAlimentos.find(alim => alim.nombre === alimSeleccionado)
+
+    console.log(alimSeleccionado, seleccionReceta);
+}
+
+let gramosSeleccionados = document.getElementById("gramos").value;
+
+let sumaCalorias = 0;
+
+
+
+function agregarAReceta() {
+
+    let divReceta = document.getElementById("recetas");
+    divReceta.innerHTML = '';
+    let contenedor = document.createElement("div");
+
+    let listaReceta = document.createElement("ul");
+    contenedor.appendChild(listaReceta);
+
+    gramosSeleccionados = document.getElementById("gramos").value;
+
+    /////// nuevo, parte del alimento seleccionado
+    if (alimentoParaReceta != '0') {
+        let seleccionadoAlimentoReceta = listaAlimentos.find(prod => prod.nombre === alimentoParaReceta)
+        ///////// nuevo, parte de los gramos seleccionados
+        if (gramosSeleccionados >= 100) {
+
+            let cantidad = gramosSeleccionados / 100;
+            console.log("seleccion calorias " + seleccionadoAlimentoReceta.calorias)
+            //sumaCalorias += (seleccion.calorias * cantidad);
+
+            let item = document.createElement("li");
+            item.innerHTML = `${listaAlimentos[respuesta - 1].nombre} - ${cantidad * 100}grs`;
+            listaReceta.appendChild(item);
+
+            contenedor.innerHTML = `
+                    <h2> La suma de calorías para esa receta es: ${sumaCalorias} </h2>
+                    <h3> Ingredientes y cantidades: </h3>
+                    ${listaReceta.outerHTML}`;
+            document.body.appendChild(contenedor);
+
+            divReceta.appendChild(contenedor);
+
+        }
+        else {
+            alert('Seleccione una cantidad de gramos, minimo 100')
+        }
+    }
+    else {
+        alert('No has seleccionado alimentos')
+    }
+
+}
+
