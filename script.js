@@ -6,6 +6,8 @@ const divProductos = document.getElementById('productos')
 const divVitamina = document.getElementById('vitaminas')
 const divRecetas = document.getElementById('recetas')
 
+let recetas = [];
+
 class Alimento {
 
     constructor(nombre, calorias, precio) {
@@ -37,7 +39,7 @@ class Alimento {
 
 let listaAlimentos = [];
 
-const alimento1 = new Alimento("salmon", 208, 100)
+const alimento1 = new Alimento("salmón", 208, 100)
 const alimento2 = new Alimento("hígado", 165, 200)
 const alimento3 = new Alimento("huevo", 155, 300)
 const alimento4 = new Alimento("papa", 86, 150)
@@ -140,7 +142,7 @@ function queAlimentosTienenXVitamina(vit) {
 let alimentoCaloriasSeleccionado = document.getElementById("alimentoCaloria");
 
 alimentoCaloriasSeleccionado.onchange = (e) => {
-    const productoSeleccionado = e.target.value
+    let productoSeleccionado = e.target.value;
 
     if (productoSeleccionado != '0' || alert('No has seleccionado alimentos')) {
         let seleccion = listaAlimentos.find(prod => prod.nombre === productoSeleccionado)
@@ -182,14 +184,46 @@ let contenedor = document.createElement("div");
 let listaReceta = document.createElement("ul");
 contenedor.appendChild(listaReceta);
 
+function alertaCool() {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Agregado exitosamente!',
+        showConfirmButton: false,
+        timer: 1500
+    })
+}
+
+function alertaErrorAlimentos() {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'No has seleccionado alimentos',
+        showConfirmButton: false,
+        timer: 1500
+    })
+}
+
+function alertaErrorCalorias() {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Seleccione una cantidad de gramos, minimo 100',
+        showConfirmButton: false,
+        timer: 1500
+    })
+}
+
 function agregarAReceta() {
+
     gramosSeleccionados = document.getElementById("gramos").value;
 
-    if (seleccionReceta || alert('No has seleccionado alimentos')) {
+    if (seleccionReceta || alertaErrorAlimentos()) {
         // DESTRUCTURING OBJETO ALIMENTO
         const { nombre, calorias } = seleccionReceta;
 
-        if (gramosSeleccionados >= 100 || alert('Seleccione una cantidad de gramos, minimo 100')) {
+        if (gramosSeleccionados >= 100 || alertaErrorCalorias()) {
+            alertaCool();
 
             let cantidad = gramosSeleccionados / 100;
 
