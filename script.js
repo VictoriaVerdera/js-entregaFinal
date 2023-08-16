@@ -18,6 +18,10 @@ class Alimento {
 
     caloriasCadaCienGramos() {
         divProductos.innerHTML = ''
+        let nombreMostrado =
+            (this.nombre === "salmon") ? "salmón" :
+                (this.nombre === "brocoli") ? "brócoli" :
+                    (this.nombre === "higado") ? "hígado" : this.nombre;
 
         const productoSeleccionado = `Producto :${this.nombre}, precio: ${this.precio}, calorías: ${this.calorias} `
 
@@ -28,7 +32,7 @@ class Alimento {
         contenedor.innerHTML = `
                 <p> 
                     100 grs de 
-                    <strong> ${this.nombre} </strong> 
+                    <strong> ${nombreMostrado} </strong> 
                     tienen: 
                     <strong> ${this.calorias} </strong> 
                     calorías.
@@ -39,11 +43,11 @@ class Alimento {
 
 let listaAlimentos = [];
 
-const alimento1 = new Alimento("salmón", 208, 100)
-const alimento2 = new Alimento("hígado", 165, 200)
+const alimento1 = new Alimento("salmon", 208, 100)
+const alimento2 = new Alimento("higado", 165, 200)
 const alimento3 = new Alimento("huevo", 155, 300)
 const alimento4 = new Alimento("papa", 86, 150)
-const alimento5 = new Alimento("brócoli", 34, 500)
+const alimento5 = new Alimento("brocoli", 34, 500)
 const alimento6 = new Alimento("tomate", 20, 350)
 const alimento7 = new Alimento("queso", 402, 600)
 const alimento8 = new Alimento("manzana", 52, 550)
@@ -142,10 +146,19 @@ function queAlimentosTienenXVitamina(vit) {
 let alimentoCaloriasSeleccionado = document.getElementById("alimentoCaloria");
 
 alimentoCaloriasSeleccionado.onchange = (e) => {
+    console.log("e " + e)
+    console.log("target " + e.target)
+    console.log("value " + e.target.value)
     let productoSeleccionado = e.target.value;
 
     if (productoSeleccionado != '0' || alert('No has seleccionado alimentos')) {
+
         let seleccion = listaAlimentos.find(prod => prod.nombre === productoSeleccionado)
+        /*
+        (elSele === "salmon") ? "salmón" : 
+        (elSele === "brocoli") ? "brócoli" : 
+        (elSele === "higado") ? "hígado" : elSele;
+        */
         seleccion.caloriasCadaCienGramos();
     }
 
@@ -184,9 +197,11 @@ let contenedor = document.createElement("div");
 let listaReceta = document.createElement("ul");
 contenedor.appendChild(listaReceta);
 
+/* SWEET ALERT */
+
 function alertaCool() {
     Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'success',
         title: 'Agregado exitosamente!',
         showConfirmButton: false,
@@ -194,20 +209,20 @@ function alertaCool() {
     })
 }
 
-function alertaErrorAlimentos() {
+function alertaWarningAlimentos() {
     Swal.fire({
-        position: 'top-end',
-        icon: 'error',
+        position: 'center',
+        icon: 'warning',
         title: 'No has seleccionado alimentos',
         showConfirmButton: false,
         timer: 1500
     })
 }
 
-function alertaErrorCalorias() {
+function alertaWarningCalorias() {
     Swal.fire({
         position: 'top-end',
-        icon: 'error',
+        icon: 'warning',
         title: 'Seleccione una cantidad de gramos, minimo 100',
         showConfirmButton: false,
         timer: 1500
@@ -218,11 +233,11 @@ function agregarAReceta() {
 
     gramosSeleccionados = document.getElementById("gramos").value;
 
-    if (seleccionReceta || alertaErrorAlimentos()) {
+    if (seleccionReceta || alertaWarningAlimentos()) {
         // DESTRUCTURING OBJETO ALIMENTO
         const { nombre, calorias } = seleccionReceta;
 
-        if (gramosSeleccionados >= 100 || alertaErrorCalorias()) {
+        if (gramosSeleccionados >= 100 || alertaWarningCalorias()) {
             alertaCool();
 
             let cantidad = gramosSeleccionados / 100;
